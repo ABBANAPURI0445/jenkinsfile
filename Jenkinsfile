@@ -24,7 +24,7 @@ node('maven') {
  }
  stage('Artifactory'){
      withCredentials([usernamePassword(credentialsId: 'jfrog', passwordVariable: 'password', usernameVariable: 'user')]) {
-    sh "curl -u $user:$password -T /home/maven/workspace/CICD/gameoflife-web/target/*.war http://34.211.148.219:8081/artifactory/GOL/gameoflife${BUILD_NUMBER}.war"
+    sh "curl -u $user:$password -T /home/maven/workspace/CICD/gameoflife-web/target/*.war http://34.211.148.219:8081/artifactory/gameoflife/gameoflife${BUILD_NUMBER}.war"
 }
      
  }
@@ -36,7 +36,7 @@ node('docker') {
 }
   stage('build docker image'){
     withCredentials([usernamePassword(credentialsId: 'jfrog', passwordVariable: 'password', usernameVariable: 'user')]) {
-    sh "docker image build --build-arg user=$user --build-arg password=$password --build-arg url=http://34.211.148.219:8081/artifactory/GOL/gameoflife${BUILD_NUMBER}.war -t gol:${BUILD_NUMBER}.0 ."
+    sh "docker image build --build-arg user=$user --build-arg password=$password --build-arg url=http://34.211.148.219:8081/artifactory/gameoflife/gameoflife${BUILD_NUMBER}.war -t gol:${BUILD_NUMBER}.0 ."
 }  
   }
   stage('docker login'){
