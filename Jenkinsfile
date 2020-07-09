@@ -45,8 +45,8 @@ node('docker') {
 }
   }
  stage('docker image push'){
-    sh label: '', script: '''docker tag gol:${BUILD_NUMBER}.0 abbanapuri0445/ursi:${BUILD_NUMBER}.0
-docker push abbanapuri0445/ursi:${BUILD_NUMBER}.0'''
+    sh label: '', script: '''docker tag gol:${BUILD_NUMBER}.0 abbanapuri0445/eks:${BUILD_NUMBER}.0
+docker push abbanapuri0445/eks:${BUILD_NUMBER}.0'''
   }
   }
   // Kuberntes write a manifest file and push to github
