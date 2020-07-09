@@ -60,6 +60,6 @@ kubectl apply -f service-lb.yaml'''
 }
 // below stage is for deploy newer version  --> general this stage is separate 
 stage('rollout'){
-    sh "kubectl --record deployment.apps/deploy-appserver set image  appserver=abbanapuri0445/ursi:${BUILD_NUMBER}.0"
+    sh "kubectl --record deployment.apps/deploy-appserver set image  appserver=abbanapuri0445/eks:${BUILD_NUMBER}.0"
 }
 }
